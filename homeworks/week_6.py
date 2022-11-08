@@ -71,9 +71,14 @@ print('Test Stat= %.4f, p-value = %.4f' % (test_stat,pvalue))
 test_stat, pvalue = shapiro(df_concat.loc[df_concat["group_type"] == "test","Purchase"])
 print('Test Stat= %.4f, p-value = %.4f' % (test_stat,pvalue))
 #p-value > 0.05. H0 reddedilemez. Normallik varsayımı sağlanmaktadır.
+#normallik varsayımı sağlanıyor. varyans homojenliğine bakılır.
 
-#normallik varsayımı sağlanıyor. parametrik test uygulanır.
+test_stat, pvalue = levene(df_concat.loc[df_concat["group_type"] == "control","Purchase"],
+                           df_concat.loc[df_concat["group_type"] == "test","Purchase"])
+print('Test Stat= %.4f, p-value=%.4f' % (test_stat,pvalue))
+#p-value>0.05. H0 reddedilemez. varyans homojenliği sağlandı.
 
+#varsayımlar sağlandığı için parametrik test yapılır.
 # t-testing
 test_stat, pvalue = ttest_ind(df_concat.loc[df_concat["group_type"] == "control","Purchase"],
                            df_concat.loc[df_concat["group_type"] == "test", "Purchase"],
