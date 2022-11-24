@@ -68,4 +68,3 @@ def item_based_recommender(movie_name, user_movie_df):
 
 item_based_recommender("Matrix, The (1999)",user_movie_df)
 
-
